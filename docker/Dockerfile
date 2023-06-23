@@ -65,4 +65,5 @@ RUN cp /app/venv/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cuda1
 
 COPY . /app/
 ENV CLI_ARGS=""
+RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
 CMD . /app/venv/bin/activate && python3 server.py ${CLI_ARGS}
