@@ -1,12 +1,5 @@
 :80 {
 
     encode zstd gzip
-    reverse_proxy 127.0.0.1:5020 127.0.0.1:5021 127.0.0.1:5022 127.0.0.1:5023 127.0.0.1:5024 127.0.0.1:5025 127.0.0.1:5026 127.0.0.1:5027 127.0.0.1:5028 127.0.0.1:5029 {
-
-        health_uri /api/v1/model
-        health_interval 5s
-        health_timeout 3s
-        health_status 200
-
-    }
+    reverse_proxy text-generation-webui:5020 text-generation-webui:5021 text-generation-webui:5022 text-generation-webui:5023 text-generation-webui:5024 text-generation-webui:5025 text-generation-webui:5026 text-generation-webui:5027 text-generation-webui:5028 text-generation-webui:5029
 }
