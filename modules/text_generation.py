@@ -23,12 +23,12 @@ from modules.models import clear_torch_cache, local_rank
 
 
 def generate_reply(*args, **kwargs):
-    shared.generation_lock.acquire()
-    try:
-        for result in _generate_reply(*args, **kwargs):
-            yield result
-    finally:
-        shared.generation_lock.release()
+    #shared.generation_lock.acquire()
+    #try:
+    for result in _generate_reply(*args, **kwargs):
+        yield result
+    #finally:
+        #shared.generation_lock.release()
 
 
 def get_max_prompt_length(state):
