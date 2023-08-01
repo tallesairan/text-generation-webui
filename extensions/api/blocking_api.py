@@ -1,10 +1,8 @@
 import json
 from http.server import HTTPServer, BaseHTTPRequestHandler, ThreadingHTTPServer
 from socketserver import ThreadingMixIn
- 
 
 from threading import Thread
-
 from extensions.api.util import build_parameters, try_start_cloudflared
 from modules import shared
 from modules.chat import generate_chat_reply
