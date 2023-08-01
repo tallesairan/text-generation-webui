@@ -37,6 +37,5 @@ services:
     volumes:
       - ./caddy/data:/data
       - ./caddy/config/Caddyfile:/etc/caddy/Caddyfile
-    depends_on: text-generation-webui
     ports:
       - "80:80"
