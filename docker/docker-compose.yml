@@ -17,6 +17,7 @@ services:
     volumes:
       - ./characters:/app/characters
       - ./extensions:/app/extensions
+      - ./modules:/app/modules
       - ./loras:/app/loras
       - /opt/text-generation-dev/config/models:/app/models
       - /opt/text-generation-dev/config/presets:/app/presets
