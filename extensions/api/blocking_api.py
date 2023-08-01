@@ -225,5 +225,5 @@ def _run_server(port: int, share: bool = False):
 
 def start_server(port: int, share: bool = False, num_threads: int = 3):
     for _ in range(num_threads):
-        Thread(target=_run_server, args=[port, share], daemon=True).start()
+        Thread(target=_run_server, args=[port+1, share], daemon=True).start()
  
