@@ -1,5 +1,8 @@
 import json
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from http.server import HTTPServer, BaseHTTPRequestHandler, ThreadingHTTPServer
+from socketserver import ThreadingMixIn
+ 
+
 from threading import Thread
 
 from extensions.api.util import build_parameters, try_start_cloudflared
@@ -28,7 +31,8 @@ def get_model_info():
         'shared.args': vars(shared.args),
     }
 
-
+class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
+    pass
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/api/v1/model':
@@ -203,7 +207,7 @@ class Handler(BaseHTTPRequestHandler):
 def _run_server(port: int, share: bool = False):
     address = '0.0.0.0' if shared.args.listen else '127.0.0.1'
 
-    server = ThreadingHTTPServer((address, port), Handler)
+    server = ThreadingSimpleServer((address, port), Handler)
 
     def on_start(public_url: str):
         print(f'Starting non-streaming server at public url {public_url}/api')
