@@ -52,6 +52,29 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
+            if shared.model_name is None:
+                shared.model_name = shared.default_model_select
+                unload_model()
+
+                model_settings = get_model_settings_from_yamls(shared.model_name)
+                shared.settings.update(model_settings)
+                update_model_parameters(model_settings, initial=True)
+
+                if shared.settings['mode'] != 'instruct':
+                    shared.settings['instruction_template'] = None
+
+                try:
+                    shared.model, shared.tokenizer = load_model(shared.model_name)
+                    if shared.args.lora:
+                        add_lora_to_model(shared.args.lora)  # list
+
+                except Exception as e:
+                    response = json.dumps({'error': {'message': repr(e)}})
+
+                    self.wfile.write(response.encode('utf-8'))
+                    raise e
+
+                shared.args.model = shared.model_name
 
             prompt = body['prompt']
             generate_params = build_parameters(body)
