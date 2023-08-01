@@ -224,9 +224,12 @@ def _run_server(port: int, share: bool = False):
     server.serve_forever()
 
 def start_server(port: int, share: bool = False, num_threads: int = 3):
+    port = port - 1
     for _ in range(num_threads):
+        port += 1
+        
+        print(f'Starting server on port {port}')
         # increment variable cPort each loop
         Thread(target=_run_server, args=[port, share], daemon=True).start()
-        port += 1
         
  
