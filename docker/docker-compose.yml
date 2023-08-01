@@ -11,8 +11,39 @@ services:
     env_file: .env
     ports:
       - "${HOST_PORT:-7860}:${CONTAINER_PORT:-7860}"
-      - "5020-5029:5020-5029"
+      - "5020-5026:5020-5026"
       - "${HOST_API_STREAM_PORT:-5005}:${CONTAINER_API_STREAM_PORT:-5005}"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./characters:/app/characters
+      - ./extensions:/app/extensions
+      - ./modules:/app/modules
+      - ./loras:/app/loras
+      - /opt/text-generation-dev/config/models:/app/models
+      - /opt/text-generation-dev/config/presets:/app/presets
+      - /opt/text-generation-dev/config/prompts:/app/prompts
+      - ./softprompts:/app/softprompts
+      - ./training:/app/training
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: [gpu]
+  text-generation-backup:
+    build:
+      context: .
+      args:
+        # specify which cuda version your card supports: https://developer.nvidia.com/cuda-gpus
+        TORCH_CUDA_ARCH_LIST: ${TORCH_CUDA_ARCH_LIST:-7.5}
+        WEBUI_VERSION: ${WEBUI_VERSION:-HEAD}
+    env_file: .env
+    ports:
+      - "7861:7861"
+      - "5030-5036:5030-5036"
+      - "5016:5016"
     stdin_open: true
     tty: true
     volumes:

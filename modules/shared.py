@@ -67,7 +67,6 @@ settings = {
     'prompt': 'QA',
 }
 
-
 def str2bool(v):
     if isinstance(v, bool):
         return v

@@ -4,5 +4,5 @@ from modules import shared
 
 
 def setup():
-    blocking_api.start_server(shared.args.api_blocking_port, share=False, num_threads=10)
+    blocking_api.start_server(shared.args.api_blocking_port, share=False, num_threads=6)
     streaming_api.start_server(shared.args.api_streaming_port, share=shared.args.public_api)
