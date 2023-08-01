@@ -128,7 +128,6 @@ def _get_api_lock(tls) -> asyncio.Lock:
 
     return tls.asyncio_lock
 
-
 def with_api_lock(func):
     """
     This decorator should be added to all streaming API methods which
@@ -139,5 +138,6 @@ def with_api_lock(func):
     @functools.wraps(func)
     async def api_wrapper(*args, **kwargs):
         async with _get_api_lock(api_tls):
-            return await func(*args, **kwargs)
+            async with shared.generation_lock:
+                return await func(*args, **kwargs)
     return api_wrapper
