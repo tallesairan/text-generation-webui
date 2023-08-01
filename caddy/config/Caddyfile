@@ -1,5 +1,5 @@
 :80 {
 
     encode zstd gzip
-    reverse_proxy text-generation-webui:5020 text-generation-webui:5021 text-generation-webui:5022 text-generation-webui:5023 text-generation-webui:5024 text-generation-webui:5025 text-generation-webui:5026 text-generation-webui:5027 text-generation-webui:5028 text-generation-webui:5029
+    reverse_proxy text-generation-webui:5020 text-generation-webui:5021 text-generation-webui:5022 text-generation-webui:5023 text-generation-webui:5024 text-generation-webui:5025 text-generation-webui:5026 text-generation-webui:5027 text-generation-webui:5030  text-generation-webui:5031 text-generation-webui:5032 text-generation-webui:5033 text-generation-webui:5034 text-generation-webui:5035 text-generation-webui:5036 text-generation-webui:5037 text-generation-webui:5038 text-generation-webui:5039 text-generation-webui:5040 text-generation-webui:5041 text-generation-webui:5042 text-generation-webui:5043 text-generation-webui:5044 text-generation-webui:5045 text-generation-webui:5046 text-generation-webui:5047 text-generation-webui:5048 text-generation-webui:5049 text-generation-webui:5050
 }
