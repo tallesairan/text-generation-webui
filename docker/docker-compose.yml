@@ -1,5 +1,6 @@
 version: "3.3"
 services:
+
   text-generation-webui:
     build:
       context: .
@@ -31,3 +32,11 @@ services:
             - driver: nvidia
               device_ids: ['0']
               capabilities: [gpu]
+  caddy-lb:
+    image: caddy:2-alpine
+    volumes:
+      - ./caddy/data:/data
+      - ./caddy/config/Caddyfile:/etc/caddy/Caddyfile
+    depends_on: text-generation-webui
+    ports:
+      - "80:80"
