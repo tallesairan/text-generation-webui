@@ -42,7 +42,7 @@ services:
     env_file: .env
     ports:
       - "7861:7861"
-      - "5020-5026:5020-5026"
+      - "5030-5036:5030-5036"
       - "5016:5016"
     stdin_open: true
     tty: true
