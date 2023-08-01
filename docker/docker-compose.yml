@@ -41,9 +41,9 @@ services:
         WEBUI_VERSION: ${WEBUI_VERSION:-HEAD}
     env_file: .env
     ports:
-      - "${HOST_PORT:-7860}:${CONTAINER_PORT:-7860}"
+      - "7861:7861"
       - "5020-5026:5020-5026"
-      - "${HOST_API_STREAM_PORT:-5005}:${CONTAINER_API_STREAM_PORT:-5005}"
+      - "5016:5016"
     stdin_open: true
     tty: true
     volumes:
