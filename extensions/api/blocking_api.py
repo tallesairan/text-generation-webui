@@ -226,6 +226,7 @@ def _run_server(port: int, share: bool = False):
 def start_server(port: int, share: bool = False, num_threads: int = 3):
     for _ in range(num_threads):
         # increment variable cPort each loop
-        port += 1
         Thread(target=_run_server, args=[port, share], daemon=True).start()
+        port += 1
+        
  
