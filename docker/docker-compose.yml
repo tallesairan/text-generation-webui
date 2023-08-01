@@ -18,9 +18,9 @@ services:
       - ./characters:/app/characters
       - ./extensions:/app/extensions
       - ./loras:/app/loras
-      - ./models:/app/models
-      - ./presets:/app/presets
-      - ./prompts:/app/prompts
+      - /opt/text-generation-dev/config/models:/app/models
+      - /opt/text-generation-dev/config/presets:/app/presets
+      - /opt/text-generation-dev/config/prompts:/app/prompts
       - ./softprompts:/app/softprompts
       - ./training:/app/training
     deploy:
