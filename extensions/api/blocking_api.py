@@ -29,7 +29,7 @@ def get_model_info():
         'shared.args': vars(shared.args),
     }
 
-class ThreadingSimpleServer(ThreadingMixIn, ThreadingHTTPServer):
+class ThreadingSimpleServer(ThreadingMixIn, HTTPServer):
     pass
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
