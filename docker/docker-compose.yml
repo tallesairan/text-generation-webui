@@ -10,7 +10,7 @@ services:
     env_file: .env
     ports:
       - "${HOST_PORT:-7860}:${CONTAINER_PORT:-7860}"
-      - "5000-5010:5000-5010"
+      - "5020-5030:5020-5030"
       - "${HOST_API_STREAM_PORT:-5005}:${CONTAINER_API_STREAM_PORT:-5005}"
     stdin_open: true
     tty: true
