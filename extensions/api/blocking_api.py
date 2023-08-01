@@ -52,7 +52,7 @@ class Handler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            if shared.model_name is None:
+            if shared.model_name == 'None':
                 shared.model_name = shared.default_model_select
                 unload_model()
 
